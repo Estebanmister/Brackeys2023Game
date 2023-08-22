@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
         cam = transform.GetChild(0).gameObject;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         float forwards = playerInput.actions["forward"].ReadValue<float>();
         float sideways = playerInput.actions["sideways"].ReadValue<float>();
         float vertical = playerInput.actions["vertical"].ReadValue<float>();
-        rb.AddForce(cam.transform.rotation * new Vector3(sideways, vertical, forwards) * Time.fixedDeltaTime * speed );
+        rb.AddForce(cam.transform.rotation * new Vector3(sideways, vertical, forwards) * Time.deltaTime * speed );
 
         Vector3 rotated_velocity = transform.InverseTransformVector(rb.velocity);
         Vector3 drags = new Vector3(drag_forwards.Evaluate(rotated_velocity.x),drag_sideways.Evaluate(rotated_velocity.y),drag_vertical.Evaluate(rotated_velocity.z));
@@ -43,8 +43,8 @@ public class PlayerMovement : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                 }
             Vector2 view = Camera.main.ScreenToViewportPoint(playerInput.actions["look"].ReadValue<Vector2>())*sensitivity;
-            viewx += view.x;
-            viewy += view.y;
+            viewx += view.x / Time.deltaTime;
+            viewy += view.y / Time.deltaTime;
             if(viewx > 359){
                 viewx -= 359;
             }
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             if(viewy < 0){
                 viewy += 359;
             }
-            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, Quaternion.Euler(new Vector3(-viewy,viewx)), 1.0f/responsiveness);
+            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, Quaternion.Euler(new Vector3(-viewy,viewx)), (1.0f/responsiveness) / Time.deltaTime);
         }
     }
 }

@@ -867,8 +867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  sensitivity: 500
-  responsiveness: 10
+  sensitivity: 1
+  responsiveness: 5000
   drag_forwards:
     serializedVersion: 2
     m_Curve:
