@@ -546,7 +546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &722732389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,7 +560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1895509982}
-  objects: []
+  objects:
+  - {fileID: 1895509982}
   offset: 0.01
   distance: 0
   on: 1
