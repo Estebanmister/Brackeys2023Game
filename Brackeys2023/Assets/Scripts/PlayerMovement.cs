@@ -43,8 +43,8 @@ public class PlayerMovement : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                 }
             Vector2 view = Camera.main.ScreenToViewportPoint(playerInput.actions["look"].ReadValue<Vector2>())*sensitivity;
-            viewx += view.x / Time.deltaTime;
-            viewy += view.y / Time.deltaTime;
+            viewx += view.x;
+            viewy += view.y;
             if(viewx > 359){
                 viewx -= 359;
             }
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             if(viewy < 0){
                 viewy += 359;
             }
-            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, Quaternion.Euler(new Vector3(-viewy,viewx)), (1.0f/responsiveness) / Time.deltaTime);
+            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, Quaternion.Euler(new Vector3(-viewy,viewx)), (1.0f/responsiveness));
         }
     }
 }
